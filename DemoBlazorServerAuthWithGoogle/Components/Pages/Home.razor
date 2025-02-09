@@ -1,0 +1,69 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+Welcome to your new app.
+
+<AuthorizeView Roles="Admin">
+    <h1>You are Admin</h1>
+</AuthorizeView>
+
+<AuthorizeView Roles="User">
+    <h1>You are User</h1>
+</AuthorizeView>
+
+<AuthorizeView>
+    <Authorized>
+        <h1>You are Authenticated</h1>
+        <ul>
+            <li>ID: @context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)!.Value</li>
+            <li>Name: @context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)!.Value</li>
+            <li>Email: @context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)!.Value</li>
+            <li>Role: @context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)!.Value</li>
+        </ul>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link d-flex align-items-center gap-2" href="logout">
+                <span>Выход</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+                </svg>
+            </NavLink>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link d-flex align-items-center gap-2" href="login">
+                <span>Войти через Google</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                    <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" />
+                </svg>
+            </NavLink>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+<style>
+    .nav-link {
+        text-decoration: none;
+        color: #333;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+            .nav-link:hover svg {
+                fill: #4285F4;
+            }
+
+    svg {
+        transition: fill 0.2s;
+    }
+</style>
