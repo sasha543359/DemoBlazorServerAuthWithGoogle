@@ -1,6 +1,5 @@
 using DemoBlazorServerAuthWithGoogle.Authentication;
 using DemoBlazorServerAuthWithGoogle.Components;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;

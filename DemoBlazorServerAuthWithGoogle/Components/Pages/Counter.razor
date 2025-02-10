@@ -3,9 +3,10 @@
 @rendermode InteractiveServer
 <PageTitle>Counter</PageTitle>
 
+<h1>Counter</h1>
+
 <AuthorizeView>
     <Authorized>
-        <h1>Counter</h1>
         <p role="status">Current count: @currentCount</p>
         <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
     </Authorized>
@@ -31,26 +32,3 @@
         currentCount++;
     }
 }
-
-<style>
-    .nav-link {
-        text-decoration: none;
-        color: #333;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: all 0.2s;
-        display: inline-flex;
-    }
-
-        .nav-link:hover {
-            background-color: #f0f0f0;
-        }
-
-            .nav-link:hover svg {
-                fill: #4285F4;
-            }
-
-    svg {
-        transition: fill 0.2s;
-    }
-</style>
